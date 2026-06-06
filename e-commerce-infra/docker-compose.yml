@@ -5,6 +5,7 @@ services:
     build: ../e-commerce-school-supply-api/
     environment:
       - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
     ports:
       - "8080:8080"
 

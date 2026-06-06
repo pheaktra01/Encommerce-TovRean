@@ -5,39 +5,24 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up JDK 23
-      uses: actions/setup-java@v4
-      with:
-        distribution: temurin
-        java-version: 23
-
-    - name: Build backend
-      env:
-        MONGO_URI: ${{ secrets.MONGO_URI }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      run: |
-        cd e-commerce-school-supply-api
-        mvn clean package
-
-    - name: Build frontend
-      run: |
-        cd e-commerce-school-supply-web
-        npm install
-        npm run build
-
-    - name: Deploy to server EC2
+    - name: Deploy to server EC2 via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
+          # 1. Navigate to your repository root on EC2
           cd ecommerce
-          git pull
+          
+          # 2. Pull the latest code changes
+          git pull origin master
+          
+          # 3. Rebuild and restart the containers with updated env variables
+          export MONGO_URI='${{ secrets.MONGO_URI }}'
+          export JWT_SECRET='${{ secrets.JWT_SECRET }}'
           docker compose up -d --build
