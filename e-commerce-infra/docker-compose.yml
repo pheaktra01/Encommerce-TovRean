@@ -3,6 +3,8 @@ version: '3.8'
 services:
   backend:
     build: ../e-commerce-school-supply-api/
+    environment:
+      - MONGO_URI=${MONGO_URI}
     ports:
       - "8080:8080"
 

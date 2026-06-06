@@ -22,14 +22,13 @@ jobs:
         npm install
         npm run build
 
-    steps:
-      - name: Deploy to server EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_HOST }}
-          script: |
-            cd ecommerce
-            git pull
-            docker compose up -d --build
+    - name: Deploy to server EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd ecommerce
+          git pull
+          docker compose up -d --build
