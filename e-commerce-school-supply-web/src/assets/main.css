@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Battambang:wght@100;300;400;700;900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import 'flowbite/src/themes/default';
+
+@import 'tailwindcss';
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@custom-variant dark (.dark &);
+
+@theme {
+  --font-quicksand: 'Quicksand', sans-serif;
+  --font-lato: 'Lato', sans-serif;
+
+  /* Your Brand Colors */
+  --color-primary: #f8fafc;
+  --color-secondary: #1a535c;
+  --color-accent: #ff6b6b;
+
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+  --color-disabled: #cbd5e1;
+
+  /* Text Colors (Recommended) */
+  --color-text-dark: #1e293b; /* For text on light backgrounds */
+  --color-text-light: #ffffff; /* For text on dark backgrounds */
+}
+
+:root {
+  --font-en: 'Lato', sans-serif;
+  --font-kh: 'Battambang', 'Noto Sans Khmer', sans-serif;
+}
+
+body {
+  font-family: var(--font-en);
+}
+
+body.lang-kh {
+  font-family: var(--font-kh);
+}
+
+body.lang-kh .font-lato,
+body.lang-kh .font-quicksand {
+  font-family: var(--font-kh);
+}

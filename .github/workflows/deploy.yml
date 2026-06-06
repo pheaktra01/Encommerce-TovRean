@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build backend
+      run: |
+        cd e-commerce-school-supply-api
+        mvn clean package
+
+    - name: Build frontend
+      run: |
+        cd e-commerce-school-supply-web
+        npm install
+        npm run build
+
+    steps:
+      - name: Deploy to server EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_HOST }}
+          script: |
+            cd ecommerce
+            git pull
+            docker compose up -d --build
