@@ -19,11 +19,11 @@ jobs:
 
     - name: Build backend
       env:
-        SPRING_DATA_MONGODB_URI: ${{ secrets.MONGO_URI }}
+        MONGO_URI: ${{ secrets.MONGO_URI }}
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
       run: |
         cd e-commerce-school-supply-api
-        mvn clean package -Dspring.profiles.active=test
+        mvn clean package
 
     - name: Build frontend
       run: |
