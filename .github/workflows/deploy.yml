@@ -38,12 +38,8 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
-          if [ ! -d "ecommerce-app/.git" ]; then
-            rm -rf ecommerce-app
-            git clone https://github.com/pheaktra01/Encommerce-TovRean.git ecommerce-app
-          fi
-
           cd ecommerce-app
           git pull origin master
 
+          cd e-commerce-infra
           docker compose up -d --build
