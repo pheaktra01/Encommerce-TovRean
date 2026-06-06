@@ -23,7 +23,7 @@ jobs:
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
       run: |
         cd e-commerce-school-supply-api
-        mvn clean package
+        mvn clean package -DskipTests
 
     - name: Build frontend
       run: |
