@@ -1,15 +1,15 @@
-version: '3.8'
-
 services:
   backend:
     build: ../e-commerce-school-supply-api/
     environment:
-      - MONGO_URI=${MONGO_URI}
-      - JWT_SECRET=${JWT_SECRET}
+      MONGO_URI: ${MONGO_URI}
+      JWT_SECRET: ${JWT_SECRET}
     ports:
       - "8080:8080"
+    restart: always
 
   frontend:
     build: ../e-commerce-school-supply-web/
     ports:
       - "3000:80"
+    restart: always
