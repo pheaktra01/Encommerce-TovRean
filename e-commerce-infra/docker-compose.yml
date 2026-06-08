@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     volume:
-      - ./uploads:/app/uploads
+      - /home/ubuntu/ecommerce-app/e-commerce-school-supply-api/uploads:/app/uploads
     restart: always
 
   frontend:
