@@ -6,7 +6,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
     ports:
       - "8080:8080"
-    volume:
+    volumes:
       - /home/ubuntu/ecommerce-app/e-commerce-school-supply-api/uploads:/app/uploads
     restart: always
 
